@@ -1,12 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
     <title>NURUL KHOLIDAH</title>
@@ -49,16 +46,31 @@
 
     <main role="main" class="container">
 
-      <div class="jumbotron">
-        <h1>NURUL KHOLIDAH</h1>
-        <p class="lead">Haii saya nurul kholidah</p>
+      <div class="starter-template">
+       
       </div>
 
     </main><!-- /.container -->
 
+    <div class="list-group">
+      <div class="jumbotron">
+        <h1>Daftar matakuliah</h1>
+  
+  <button type="button" class="list-group-item list-group-item-action">Analisis dan Desain Perangkat Lunak</button>
+  <button type="button" class="list-group-item list-group-item-action">Multimedia</button>
+  <button type="button" class="list-group-item list-group-item-action">Pemprograman Framework</button>
+  <button type="button" class="list-group-item list-group-item-action">Jaringan Komputer</button>
+  <button type="button" class="list-group-item list-group-item-action">B.inggris</button>
+  <button type="button" class="list-group-item list-group-item-action">Kecerdasan buatan</button>
+  <button type="button" class="list-group-item list-group-item-action">B.indonesia</button>
+</div>
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../../../dist/js/bootstrap.min.js"></script>
   </body>
 </html>
