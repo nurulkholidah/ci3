@@ -10,12 +10,84 @@ class Blog extends CI_Controller {
 		$this->load->view('blog', $data);
 	}
 
-	public function detail($id)
+	public function detail($a)
 	{
 		$this->load->model('artikel');
 		$data['detail'] = $this->artikel->get_single($id);
 		$this->load->view('blog1', $data);
 	}
+
+	public function tambah()
+	{
+		$this->load->model('artikel');
+		$data = array();
+
+		if ($this->input->post('simpan')) {
+			$upload = $this->artikel->upload();
+
+			if ($upload['result'] == 'success') {
+				$this->artikel->insert($upload);
+				redirect('blog');
+			}else{
+				$data['message'] = $upload['error'];
+			}
+		}
+
+		$this->load->view('Add', $data);
+	}
+
+	public function delete($a) {
+		$this->load->model('artikel');
+		$this->artikel->hapus($a);
+		redirect('blog');
+	}
+
+	/*public function edit($a) {
+		$this->load->model('artikel');
+		$data['a'] = $this->artikel->get_single($a);
+		if ($this->input->post('update')) {
+			$upload=$this->artikel->upload();
+			$this->artikel->edit($upload, $id);
+		}
+		$this->load->view('edit', $data);
+	}*/
+
+
+	/*	public function edit($a) {
+		$this->load->model('artikel');
+		$data['update_data'] = $this->artikel->get_single($a);
+		if ($this->input->post('update')) {
+			$upload=$this->artikel->upload();
+			$this->artikel->edit($upload, $a);
+		}
+		$this->load->view('edit', $data);
+	} */
+
+	public function Form_Edit($a)
+	{
+		$this->data['update_data']=$this->artikel->update_data('blog',$a);
+		$this->load->view('edit', $this->$data);
+	}
+
+
+	public function update($a)
+	{
+
+	$judul= $_POST['judul'];
+	$content = $_POST['content'];
+	$image = $_POST['image'];
+ 	$data = array(
+ 		'judul' => $judul,
+		'content' => $content,
+		'image' => $image
+	);
+ 	$edit = $this->artikel->edit_data('blog',$data,$a);
+ 	if($edit>0){
+ 		redirect('blog');
+ 	}else{
+ 		echo 'Gagal disimpan';
+ 	}
+}
 
 }
 

@@ -58,6 +58,7 @@
   <!-- +++++ Second Post +++++ -->
   <div id="white">
       <div class="container">
+      <a href="<?php echo site_url('blog/tambah/'); ?>" class="btn btn-success">Tambah</a>
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
 
@@ -73,9 +74,12 @@
                   <br>
                   <center><h1><?php echo $key->judul ?></h1></center>
                 </a>
+                <a href="<?php echo site_url('blog/Form_edit/'. $key->id); ?>" class="btn btn-sm btn-danger">edit</a>
+                <a href='blog/delete/<?php echo $key->id ?>' class='btn btn-sm btn-danger'>Hapus</a>
               </td>
             </tr>
           </table>
+        </div>
         </div>
       <?php endforeach ?>
 
@@ -89,7 +93,7 @@
           <p><img class="img-responsive" src="<?php echo site_url('a/assets/img/portfolio/c.png');?>" alt=""></p>
           <p>Politeknik Negeri Malang awalnya bernama Politeknik Universitas Brawijaya, berdiri pada tahun 1982 berdasarkan Surat Keputusan Presiden No. 59/Tahun 1982. Politeknik Universitas Brawijaya berkedudukan di Kota Malang, Provinsi Jawa Timur dan merupakan salah satu dari 6 Politeknik perintis berdasarkan Surat Keputusan Direktur Jenderal Pendidikan Tinggi No.115/DIKTI/KEP/1984. Perubahan nama Politeknik Universitas Brawijaya menjadi Politeknik Negeri Malang (POLINEMA) didasarkan pada Surat Keputusan Menteri Pendidikan Nasional Nomor 147/O/2004 tanggal 22 November 2004</p>
           <p><a href="<?php echo site_url('blog1/'); ?>">Continue Reading...</a></p> -->
-        </div>
+        
 
       </div><!-- /row -->
       </div> <!-- /container -->
