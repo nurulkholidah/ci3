@@ -22,6 +22,18 @@ class Blog extends CI_Controller {
 		$this->load->model('artikel');
 		$data = array();
 
+		$this->load->helper('form');
+	    $this->load->library('form_validation');
+	    $this->form_validation->set_rules('input_judul', 'title', 'required');
+	    $this->form_validation->set_rules('input_content', 'content', 'required');
+	    $this->form_validation->set_rules('input_gambar', 'image', 'required');
+
+	    if ($this->form_validation->run() == FALSE)
+	    {
+	        $this->load->view('Add');
+
+	    } else {
+
 		if ($this->input->post('simpan')) {
 			$upload = $this->artikel->upload();
 
@@ -34,6 +46,7 @@ class Blog extends CI_Controller {
 		}
 
 		$this->load->view('Add', $data);
+		}
 	}
 
 	public function delete($a) {
@@ -72,6 +85,17 @@ class Blog extends CI_Controller {
 
 	public function update($a)
 	{
+		$this->load->helper('form');
+	    $this->load->library('form_validation');
+	    $this->form_validation->set_rules('input_judul', 'title', 'required');
+	    $this->form_validation->set_rules('input_content', 'content', 'required');
+	    $this->form_validation->set_rules('input_gambar', 'image', 'required');
+
+	    if ($this->form_validation->run() == FALSE)
+	    {
+	        $this->load->view('edit');
+
+	    } else {
 
 	$judul= $_POST['judul'];
 	$content = $_POST['content'];
@@ -82,11 +106,13 @@ class Blog extends CI_Controller {
 		'image' => $image
 	);
  	$edit = $this->artikel->edit_data('blog',$data,$a);
+
  	if($edit>0){
  		redirect('blog');
  	}else{
  		echo 'Gagal disimpan';
  	}
+ }
 }
 
 }

@@ -83,10 +83,10 @@
 		<div class="row mt">	
 
 			<div class="col-lg-8 col-lg-offset-2">
-
+				<?php echo form_open_multipart('blog/update/'.$a) ?>
 
 				<form role="form">
-					<form action="<?php echo site_url('blog/update/'.$a) ?>" method="POST">
+					<form method="POST">
 
 				  <div class="form-group">
 				    <input type="text" name="judul" value="<?php echo $judul ?>" class="form-control"  placeholder="Judul">
