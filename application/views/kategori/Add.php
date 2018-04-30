@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
-    <title>Nurul kholidah </title>
+    <title>Nurul kholidah</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="<?php echo site_url('a/assets/css/bootstrap.css'); ?>">
@@ -29,6 +29,7 @@
   <body>
 
     <!-- Static navbar -->
+    <!-- Static navbar -->
     <div class="navbar navbar-inverse navbar-static-top">
       <div class="container">
         <div class="navbar-header">
@@ -42,67 +43,91 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-           <li>
+              <li>
       <a href="<?php echo site_url('home/'); ?>">Home</a>
       </li>
       <li>
       <a href="<?php echo site_url('about/'); ?>">About</a>
       </li>
-            <li>
-              <a href="<?php echo site_url('blog/'); ?>">Artikel</a>
-            </li>
-            <li>
-              <a href="<?php echo site_url('kategori/'); ?>">Kategori</a>
-            </li>
+      <li>
+      <a href="<?php echo site_url('blog/'); ?>">Blog</a>
+      </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
+	
+	
+	<!-- +++++ Contact Section +++++ -->
+	
+	<div class="container pt">
+		<div class="row mt">
+			<div class="col-lg-6 col-lg-offset-3 centered">
+				<h3>Tambah</h3>
+				<hr>
+			
+			</div>
+		</div>
+		<div class="row mt">	
+			<div class="col-lg-8 col-lg-offset-2">
 
-  <!-- +++++ Welcome Section +++++ -->
-  <div id="ww">
-      <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 centered">
-          <img src="<?php echo site_url('a/assets/img/user.jpg');?>" alt="Stanley">
-          <h1>About Nurul!</h1>
-          <p>Hello semua. saya nurul lahir di malang besar di malang. rumah saya di jalan silikat no 63 malang rt 05 rw 11
-          </p>
-        
-        </div><!-- /col-lg-8 -->
-      </div><!-- /row -->
-      </div> <!-- /container -->
-  </div><!-- /ww -->
-  
-  
-  <!-- +++++ Information Section +++++ -->
-  
-  
-  <div id="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4">
-          <h4>Nurul Kholidah</h4>
-          <p>
-            20 Mei 1997,<br/>
-            0341 456781 <br/>
-            Blimbing malang.
-          </p>
-        </div><!-- /col-lg-4 -->
-        
-        <div class="col-lg-4">
-          <h4>Temukan saya di</h4>
-          <p
-            <a href="#">Twitter</a><br/>
-            <a href="#">Facebook</a>
-          </p>
-        </div><!-- /col-lg-4 -->
-      
-      </div>
-    
-    </div>
-  </div>
-  
+
+				<form role="form">
+					<?php    
+                        $this->form_validation->set_error_delimiters('<div class="alert alert-warning" role="alert">', '</div>');
+                    ?>
+                    <?php echo validation_errors(); ?>
+
+                    <?php echo form_open( 'kategori/Add', array('class' => 'needs-validation', 'novalidate' => '') ); ?>
+				  <div class="form-group">
+				    <input type="text" name="cat_name" value="<?php echo set_value('cat_name'); ?>" class="form-control"  placeholder="Judul">
+				    <br>
+				  </div>
+				  <textarea  type="text" name="cat_description" value="<?php echo set_value('cat_description'); ?>" class="form-control" rows="6" placeholder="Content"></textarea>
+				  <br>
+
+				    <br>
+
+				  <button type="submit" name="simpan" value="simpan" class="btn btn-success">SUBMIT</button>
+				</form>    			
+			</div>
+		</div><!-- /row -->
+	</div><!-- /container -->
+	
+	
+	<!-- +++++ Footer Section +++++ -->
+	
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<h4>My Bunker</h4>
+					<p>
+						Some Address 987,<br/>
+						+34 9054 5455, <br/>
+						Madrid, Spain.
+					</p>
+				</div><!-- /col-lg-4 -->
+				
+				<div class="col-lg-4">
+					<h4>My Links</h4>
+					<p>
+						<a href="#">Dribbble</a><br/>
+						<a href="#">Twitter</a><br/>
+						<a href="#">Facebook</a>
+					</p>
+				</div><!-- /col-lg-4 -->
+				
+				<div class="col-lg-4">
+					<h4>About Stanley</h4>
+					<p>This cute theme was created to showcase your work in a simple way. Use it wisely.</p>
+				</div><!-- /col-lg-4 -->
+			
+			</div>
+		
+		</div>
+	</div>
+	
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

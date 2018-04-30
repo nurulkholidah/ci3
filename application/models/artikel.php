@@ -3,68 +3,75 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Artikel extends CI_Model {
 
-	public function get_artikels(){
+	    function __construct()
+    {
+    	parent::__construct();
+    }
+
+	public function get_all_artikel(){
+        $this->db->join('categories', 'categories.cat_id = blog.jenis_cat');
 		$query = $this->db->get('blog');
 		return $query->result();
 	}	
 
-	public function get_single($a)
+	public function get_single($id)
 	{
-		$query = $this->db->query('select * from blog where id='.$a);
+		$query = $this->db->query('select * from blog where id='.$id);
 		return $query->result();
 	}
-	public function upload()
-	{
-		$config['upload_path'] = './img/';
-		$config['allowed_types'] = 'jpg|png';
-		$config['max_size']  = '2048';
-		$config['remove_space']  = TRUE;
-		
-		$this->load->library('upload', $config);
-		
-		if ($this->upload->do_upload('input_gambar')){
-			$return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
-			return $return;
-		} else {
-			$return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
-			return $return;
-		}
-	} 
 
-	public function insert($upload)
-	{
-		$data = array(
-			'id' => '',
-			'judul' => $this->input->post('input_judul'),
-			'content' => $this->input->post('input_content'),
-			//'tanggal' => $this->input->post('input_tanggal'),
-			'image' => $upload['file']['file_name']
-		);
+	public function get_artikel_by_id($id)
+    {
+         // Inner Join dengan table Categories
+        $this->db->select ( '
+            blog.*, 
+            categories.cat_id as category_id, 
+            categories.cat_name,
+            categories.cat_description,
+        ' );
+        $this->db->join('categories', 'categories.cat_id = blog.jenis_cat');
 
-		$this->db->insert('blog', $data);
-	}
+    	$query = $this->db->get_where('blog', array('blog.id' => $id));
+    	            
+		return $query->row();
+    }
 
-	public function hapus($a){
-		$query = $this->db->query('DELETE from blog WHERE id= '.$a);
-	}
+        public function create_artikel($data)
+    {  
+        return $this->db->insert('blog', $data);
+    }
+
+    public function update_artikel($data, $id) 
+    {
+        if ( !empty($data) && !empty($id) ){
+            $update = $this->db->update( 'blog', $data, array('id'=>$id) );
+            return $update ? true : false;
+        } else {
+            return false;
+        }
+    }
+
+    public function delete_artikel($id)
+    {
+    	if ( !empty($id) ){
+	    	$delete = $this->db->delete('blog', array('id'=>$id) );
+	        return $delete ? true : false;
+    	} else {
+    		return false;
+    	}
+    }
+
+    public function get_artikel_by_category($category_id)
+    {
+
+        $this->db->order_by('blog.id', 'DESC');
+
+        $this->db->join('categories', 'categories.cat_id = blog.jenis_cat');
+        $query = $this->db->get_where('blog', array('cat_id' => $category_id));
+  
+        return $query->result();
+    }
+
 
 	
-	public function edit_data($table,$data,$a)
-	{  
-		$this->db->where('id',$a);
-		$edit = $this->db->update($table,$data);
-		return $edit;
-
-	}
-
-	public function update_data($table,$a)
-	{
-		$this->db->where('id',$a);
-		$query = $this->db->get($table);
-		return $query->row();
-	}
-
 }
-
-/* End of file blog.php */
-/* Location: ./application/models/blog.php */

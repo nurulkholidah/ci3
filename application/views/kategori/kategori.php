@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
-    <title>Nurul kholidah </title>
+    <title>Nurul kholidah</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="<?php echo site_url('a/assets/css/bootstrap.css'); ?>">
@@ -42,13 +42,13 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-           <li>
+              <li>
       <a href="<?php echo site_url('home/'); ?>">Home</a>
       </li>
       <li>
       <a href="<?php echo site_url('about/'); ?>">About</a>
       </li>
-            <li>
+      <li>
               <a href="<?php echo site_url('blog/'); ?>">Artikel</a>
             </li>
             <li>
@@ -58,25 +58,58 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-
-  <!-- +++++ Welcome Section +++++ -->
-  <div id="ww">
+  <!-- +++++ Second Post +++++ -->
+  <div id="white">  
+    <?php if( !empty($categories) ) : ?>
       <div class="container">
+      <a href="<?php echo site_url('kategori/create/'); ?>" class="btn btn-success">Tambah Kategori</a>
       <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 centered">
-          <img src="<?php echo site_url('a/assets/img/user.jpg');?>" alt="Stanley">
-          <h1>About Nurul!</h1>
-          <p>Hello semua. saya nurul lahir di malang besar di malang. rumah saya di jalan silikat no 63 malang rt 05 rw 11
-          </p>
+         <?php
+            foreach ($categories as $key) :
+          ?>
+        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          <table style="margin-bottom: 30px;">
+            <tr>
+              <td>
+                 
+                  <br>
+                  <center><h1><?php echo $key->cat_name ?></h1></center>
+                  <a href="<?php echo base_url('kategori/artikel/'.$key->cat_id) ?>" class="btn btn-success">Lihat Artikel</a> 
+                  <br>
+                  <br>
+                </a>
+                <a href="<?php echo base_url(). 'kategori/edit/' . $key->cat_id ?>" class="btn btn-sm btn-danger">edit</a>
+                <a href='blog/delete/<?php echo $key->id ?>' class='btn btn-sm btn-danger'>Hapus</a>
+              </td>
+            </tr>
+          </table>
+        </div>
+        </div>
+      <?php endforeach ?>
+
+
+
+
+
+        <!--  <p><img src="<?php echo site_url('a/assets/img/user.jpg');?>" width="50px" height="50px"> <ba>Nurul kholidah</ba></p>
+          <p><bd>April 8, 2018</bd></p>
+          <h4>Artikel saya</h4>
+          <p><img class="img-responsive" src="<?php echo site_url('a/assets/img/portfolio/c.png');?>" alt=""></p>
+          <p>Politeknik Negeri Malang awalnya bernama Politeknik Universitas Brawijaya, berdiri pada tahun 1982 berdasarkan Surat Keputusan Presiden No. 59/Tahun 1982. Politeknik Universitas Brawijaya berkedudukan di Kota Malang, Provinsi Jawa Timur dan merupakan salah satu dari 6 Politeknik perintis berdasarkan Surat Keputusan Direktur Jenderal Pendidikan Tinggi No.115/DIKTI/KEP/1984. Perubahan nama Politeknik Universitas Brawijaya menjadi Politeknik Negeri Malang (POLINEMA) didasarkan pada Surat Keputusan Menteri Pendidikan Nasional Nomor 147/O/2004 tanggal 22 November 2004</p>
+          <p><a href="<?php echo site_url('blog1/'); ?>">Continue Reading...</a></p> -->
         
-        </div><!-- /col-lg-8 -->
+
       </div><!-- /row -->
       </div> <!-- /container -->
-  </div><!-- /ww -->
+                  </div>
+                    <?php else : ?>
+        <p>Belum ada data bosque.</p>
+        <?php endif; ?>
+  </div><!-- /white -->
   
   
-  <!-- +++++ Information Section +++++ -->
-  
+  <!-- +++++ Footer Section +++++ -->
   
   <div id="footer">
     <div class="container">

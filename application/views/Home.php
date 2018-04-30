@@ -51,7 +51,10 @@
               <a href="<?php echo site_url('about/'); ?>">About</a>
             </li>
             <li>
-              <a href="<?php echo site_url('blog/'); ?>">Blog</a>
+              <a href="<?php echo site_url('blog/'); ?>">Artikel</a>
+            </li>
+            <li>
+              <a href="<?php echo site_url('kategori/'); ?>">Kategori</a>
             </li>
           </ul>
         </div><!--/.nav-collapse -->
