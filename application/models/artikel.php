@@ -3,16 +3,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Artikel extends CI_Model {
 
-	    function __construct()
+    function __construct()
+
     {
     	parent::__construct();
     }
 
-	public function get_all_artikel(){
-        $this->db->join('categories', 'categories.cat_id = blog.jenis_cat');
+	public function get_all_artikel($limit = FALSE, $offset = FALSE )
+    {
+        if ( $limit ) {
+            $this->db->limit($limit, $offset);
+        }
+        $this->db->order_by('blog.id', 'ASC');
+         $this->db->join('categories', 'categories.cat_id = blog.jenis_cat');
 		$query = $this->db->get('blog');
 		return $query->result();
 	}	
+
+    public function get_total() 
+    {
+        // Dapatkan jumlah total artikel
+        return $this->db->count_all("blog");
+    }
 
 	public function get_single($id)
 	{
@@ -64,7 +76,7 @@ class Artikel extends CI_Model {
     public function get_artikel_by_category($category_id)
     {
 
-        $this->db->order_by('blog.id', 'DESC');
+        $this->db->order_by('blog.id', 'ASC');
 
         $this->db->join('categories', 'categories.cat_id = blog.jenis_cat');
         $query = $this->db->get_where('blog', array('cat_id' => $category_id));

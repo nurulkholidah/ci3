@@ -12,14 +12,37 @@ class Blog extends CI_Controller {
 		// dapat dipanggil oleh semua method yang ada pada class ini
 		$this->load->helper('MY');
 
-		$this->load->model('Artikel');
+		$this->load->model('artikel');
 		$this->load->model('Kategori_model');
 
 	}
 
 	public function index()
 	{
-		$data['artikel'] = $this->Artikel->get_all_artikel();
+		$limit_per_page = 6;
+
+		// URI segment untuk mendeteksi "halaman ke berapa" dari URL
+		$start_index = ( $this->uri->segment(3) ) ? $this->uri->segment(3) : 0;
+
+		// Dapatkan jumlah data 
+		$total_records = $this->artikel->get_total();
+		
+		if ($total_records > 0) {
+			// Dapatkan data pada halaman yg dituju
+			$data["artikel"] = $this->artikel->get_all_artikel($limit_per_page, $start_index);
+			
+			// Konfigurasi pagination
+			$config['base_url'] = base_url() . 'blog/index';
+			$config['total_rows'] = $total_records;
+			$config['per_page'] = $limit_per_page;
+			$config["uri_segment"] = 3;
+			
+			$this->pagination->initialize($config);
+				
+			// Buat link pagination
+			$data["links"] = $this->pagination->create_links();
+		}
+		
 		$this->load->view('blog', $data);
 	}
 
@@ -149,7 +172,7 @@ class Blog extends CI_Controller {
 		//$data['page_title'] = 'Edit Artikel';
 
 		// Get artikel dari model berdasarkan $id
-		$data['artikel'] = $this->Artikel->get_artikel_by_id($id);
+		$data['artikel'] = $this->artikel->get_artikel_by_id($id);
 
 		// Jika id kosong atau tidak ada id yg dimaksud, lempar user ke halaman blog
 		if ( empty($id) || !$data['artikel'] ) redirect('blog');

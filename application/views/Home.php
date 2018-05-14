@@ -11,27 +11,28 @@
     <title>Nurul kholidah</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="<?php echo site_url('a/assets/css/bootstrap.css'); ?>">
+<!--     <link rel="stylesheet" href="<?php echo site_url('a/assets/css/bootstrap.css'); ?>">
 
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="<?php echo site_url('a/assets/css/main.css'); ?>">
+    <!-- <link rel="stylesheet" href="<?php echo site_url('a/assets/css/main.css'); ?>">
 
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="assets/js/hover.zoom.js"></script>
     <script src="assets/js/hover.zoom.conf.js"></script>
-
+ -->
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-  </head>
+<!--   </head>  -->
+  <?php $this->load->view('templates/header');?>
 
-  <body>
+  <!-- <body>
 
     <!-- Static navbar -->
-    <div class="navbar navbar-inverse navbar-static-top">
+    <!-- <div class="navbar navbar-inverse navbar-static-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -58,8 +59,8 @@
             </li>
           </ul>
         </div><!--/.nav-collapse -->
-      </div>
-    </div>
+      <!-- </div>
+    </div> --> 
 
   <!-- +++++ Welcome Section +++++ -->
   <div id="ww">
@@ -99,7 +100,7 @@
   
   <!-- +++++ Footer Section +++++ -->
   
-  <div id="footer">
+  <!-- <div id="footer">
     <div class="container">
       <div class="row">
         <div class="col-lg-4">
@@ -111,23 +112,25 @@
           </p>
         </div><!-- /col-lg-4 -->
         
-        <div class="col-lg-4">
+        <!-- <div class="col-lg-4">
           <h4>Temukan saya di</h4>
           <p
             <a href="#">Twitter</a><br/>
             <a href="#">Facebook</a>
           </p>
-        </div><!-- /col-lg-4 -->
-      
+        </div> --><!-- /col-lg-4 -->
+      <!-- 
       </div>
     
     </div>
-  </div>
+  </div> -->
   
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- <script src="assets/js/bootstrap.min.js"></script>
   </body>
-</html>
+</html> -->
+
+<?php $this->load->view('templates/footer');?>
