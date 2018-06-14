@@ -37,4 +37,33 @@ class user_model extends CI_Model {
             return false;
         }
     }
+    function get_user_level($id)
+    {
+        // Dapatkan data user berdasar $user_id
+        $this->db->select('fk_level_id');
+        $this->db->where('id', $id);
+
+        $result = $this->db->get('user');
+
+        if($result->num_rows() == 1){
+            return $result->row(0);
+        } else {
+            return false;
+        }
+    }
+
+    function get_user_details($id)
+    {
+        $this->db->join('levels', 'levels.level_id = user.fk_level_id', 'left');
+        $this->db->where('id', $id);
+
+        $result = $this->db->get('user');
+
+        if($result->num_rows() == 1){
+            return $result->row(0);
+        } else {
+            return false;
+        }
+    }
+
 }
