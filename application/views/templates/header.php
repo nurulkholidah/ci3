@@ -60,16 +60,45 @@
             <li>
               <a href="<?php echo site_url('about/'); ?>">About</a>
             </li>
-            <li>
+            <!-- <li>
               <a href="<?php echo site_url('blog/'); ?>">Artikel</a>
             </li>
             <li>
               <a href="<?php echo site_url('kategori/'); ?>">Kategori</a>
-            </li>
-            <li>
+            </li> -->
+            <!-- <li>
               <a href="<?php echo site_url('datatables/'); ?>">Data Tables</a>
-            </li>
+            </li> -->
           </ul>
+
+
+          <?php if(!$this->session->userdata('logged_in') || $this->session->userdata('level') != 1) : ?>
+      <div class="navbar-collapse collapse">
+                      <ul class="nav navbar-nav navbar-right">
+                      <li>
+                        <?php echo anchor('blog/', 'Artikel', array('class' => '')); ?>
+                      </li>
+                      <li>
+                        <?php echo anchor('kategori/', 'Kategori', array('class' => '')); ?>
+                      </li>
+                    </ul>
+
+                    </div>
+      <?php endif; ?>
+
+
+      <?php if($this->session->userdata('logged_in') && $this->session->userdata('level') == 1) : ?>
+      <div class="navbar-collapse collapse">
+                      <ul class="nav navbar-nav navbar-right">
+                      <li>
+                        <?php echo anchor('datatables/view_json', 'Datatables', array('class' => '')); ?>
+                      </li>
+                    </ul>
+
+                    </div>
+      <?php endif; ?>
+
+
           <?php if(!$this->session->userdata('logged_in')) : ?>
 
                     <div class="navbar-collapse collapse">
@@ -89,12 +118,12 @@
                 <?php if($this->session->userdata('logged_in')) : ?>
                     <div class="navbar-collapse collapse">
                       <ul class="nav navbar-nav navbar-right">
-                        <li>
+                        <!-- <li>
                         <?php echo anchor('blog/create', 'Artikel Baru', array('class' => '')); ?>
                       </li>
                       <li>
                         <?php echo anchor('category/create', 'Kategori Baru', array('class' => '')); ?>
-                      </li>
+                      </li> -->
                       <li>
                         <?php echo anchor('user/logout', 'Logout', array('class' => '')); ?>
                       </li>

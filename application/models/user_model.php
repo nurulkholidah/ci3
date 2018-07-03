@@ -15,6 +15,7 @@ class user_model extends CI_Model {
             'telp' => $this->input->post('telp'),
             'username' => $this->input->post('username'),
             'password' => $enc_password,
+            'fk_level_id' => $this->input->post('membership')
 
         );
 
@@ -32,16 +33,16 @@ class user_model extends CI_Model {
 
 
         if($result->num_rows() == 1){
-            return $result->row(0)->id;
+            return $result->row(0)->user_id;
         } else {
             return false;
         }
     }
-    function get_user_level($id)
+    function get_user_level($user_id)
     {
         // Dapatkan data user berdasar $user_id
         $this->db->select('fk_level_id');
-        $this->db->where('id', $id);
+        $this->db->where('user_id', $user_id);
 
         $result = $this->db->get('user');
 
@@ -52,10 +53,10 @@ class user_model extends CI_Model {
         }
     }
 
-    function get_user_details($id)
+    function get_user_details($user_id)
     {
         $this->db->join('levels', 'levels.level_id = user.fk_level_id', 'left');
-        $this->db->where('id', $id);
+        $this->db->where('user_id', $user_id);
 
         $result = $this->db->get('user');
 

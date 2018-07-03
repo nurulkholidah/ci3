@@ -64,9 +64,10 @@ class User extends CI_Controller{
 	if($id){
 		// Buat session
 		$user_data = array(
-			'id' => $id,
+			'user_id' => $user_id,
 			'username' => $username,
-			'logged_in' => true
+			'logged_in' => true,
+			'levels' => $this->user_model->get_user_level($user_id),
 		);
 
 		$this->session->set_userdata($user_data);
@@ -88,7 +89,7 @@ class User extends CI_Controller{
 	public function logout(){
 		// Unset user data
 		$this->session->unset_userdata('logged_in');
-		$this->session->unset_userdata('id');
+		$this->session->unset_userdata('user_id');
 		$this->session->unset_userdata('username');
 
 		// Set message
@@ -102,15 +103,15 @@ class User extends CI_Controller{
 		if(!$this->session->userdata('logged_in')) 
 			redirect('user/login');
 
-		$id = $this->session->userdata('id');
+		$user_id = $this->session->userdata('user_id');
 
 		// Dapatkan detail dari User
-		$data['user'] = $this->user_model->get_user_details( $id );
+		$data['user'] = $this->user_model->get_user_details( $user_id );
 
 		// Load view
-		$this->load->view('templates/header', $data, FALSE);
+		
 		$this->load->view('user/dashboard', $data, FALSE);
-		$this->load->view('templates/footer', $data, FALSE);
+		
 	}
 
 }
